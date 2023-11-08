@@ -1,0 +1,17 @@
+{% load i18n %}
+
+<div class="sample-container">
+    <h3 class="sample-title"><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h3>
+    <p class="sample-date text-muted small">{% trans "Published" %} {{ gallery.date_added }}</p>
+    {% if gallery.description %}<p class="sample-description">{{ gallery.description|safe }}</p>{% endif %}
+
+    <div class="sample-photos">
+        {% with gallery.sample|first as photo %}
+            {% if photo %}
+                <a href="{{ gallery.get_absolute_url }}" class="sample-photo-link">
+                    <img src="{{ photo.get_thumbnail_url }}" class="sample-photo img-thumbnail" alt="{{ photo.title }}">
+                </a>
+            {% endif %}
+        {% endwith %}
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<title>Sign Up</title>
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+
+
+
+    {% if user.is_authenticated %}
+        <h1 class="p-2 text-center mb-5 text-warning">You Are Already Signed in!</h1>
+
+    {% else %}
+
+        <div style="width: 720px; margin: 0 auto;">
+            <div class="shadow bg-body bg-body rounded text-black">
+                <form method="POST" action="{% url 'register_user' %}">
+                    <label class="title" style="font-weight: 500; font-size: 32px; text-align: center;">Already Have An
+                        Account?</label>
+                    <br/>
+                    <div style="margin-top: 24px;">
+                        <button class="btn btn-primary" onclick="window.location.href='{% url 'login' %}'">
+                            Sign In
+                        </button>
+                    </div>
+                    <label class="title" style="font-size: 24px; font-weight: 700;">Or Sign Up Below!</label>
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <br/>
+                </form>
+            </div>
+            <br/><br/><br/>
+        </div>
+    {% endif %}
+{% endblock %}

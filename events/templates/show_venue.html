@@ -1,0 +1,50 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+
+
+    <div class="card">
+        <div class="card-header">
+            Photo Package
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ package }}</h5>
+            <p class="card-text">
+            <ul>
+
+                <li>{{ package.address }}</li>
+                <li>{{ package.zip_code }}</li>
+                <li>{{ package.phone }}</li>
+                <li>{{ package.email_address }}</li>
+                <li><a href="{{ package.web }}">{{ package.web }}</a></li>
+                <li>Owner: {{ package_owner }} </li>
+                <li>Owner's Email: {{ package_owner.email }} </li>
+
+            </ul>
+            <br>
+
+            {% if package.package_image %}
+                <img src="{{ package.package_image.url }}" width=500>
+            {% endif %}
+
+
+
+            </p>
+            <br/>
+            <h3>Available Bookings for this Package:</h3>
+            {% if bookings %}
+                {% for booking in bookings %}
+                    <a href="{% url 'show-booking' booking.id %}">{{ booking }}</a><br/>
+                {% endfor %}
+                <br/>
+            {% else %}
+                No Bookings Scheduled At This Time.
+            {% endif %}
+        </div>
+        <br/><br/>
+    </div>
+    <br/>
+
+
+    </center>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+
+    {% if searched %}
+        <h1>Search Results for: <i>{{ searched }}</i></h1>
+        <br/>
+
+
+
+        {% for package in packages %}
+
+            <div class="card">
+                <div class="card-header">
+                    Package(s):
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ package }}</h5>
+                    <p class="card-text">
+                    <ul>
+                        {% if package.address %}
+                            <li>{{ package.address }}</li>
+                        {% endif %}
+
+                        {% if package.zip_code %}
+                            <li>{{ package.zip_code }}</li>
+                        {% endif %}
+
+                        {% if package.phone %}
+                            <li>{{ package.phone }}</li>
+                        {% endif %}
+
+                        {% if package.email_address %}
+                            <li>{{ package.email_address }}</li>
+                        {% endif %}
+
+                        {% if package.web %}
+                            <li><a href="{{ package.web }}">{{ package.web }}</a></li>
+                        {% endif %}
+
+                        {% if package.owner %}
+                            <li>Owner ID: {{ package.owner }} </li>
+                        {% endif %}
+
+
+                    </ul>
+
+
+                    </p>
+                </div>
+            </div>
+            <br/>
+
+
+        {% endfor %}
+
+    {% else %}
+        <h1>No Results, Try Again....</h1>
+    {% endif %}
+
+
+
+
+
+{% endblock %}

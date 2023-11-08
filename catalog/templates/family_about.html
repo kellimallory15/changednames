@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+{% load static %}
+{% block content %}
+
+
+    <head>
+        <title>Pixel Perfect Studios | Senior Photo Package</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+              rel="stylesheet">
+        <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
+        <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'site.webmanifest' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+        <script src="{% static 'script.js' %}" type="text/javascript"></script>
+    </head>
+
+    <main style="margin-top: 56px;">
+        <img src="{% static 'index/family_02.webp' %}" width="50%" height="50%" alt="Family Package" class="portrait">
+        <div style="display: table-row; margin-left: 62px;">
+            <h2>$350</h2>
+            <h2 style="margin-bottom: 22px;">Family Session Package</h2>
+            <p>Despite being annoyed with them during half of my childhood,
+                as I've grown older, I've started to cherish the family
+                dynamic more and more. You laugh with them, cry with them,
+                and grow with them. As time seems to pass faster and faster,
+                it is important to capture the connection you all have during
+                certain parts of your lives. What better way to do that than
+                through a photo shoot? </p>
+            <br/>
+            <p>If you’re looking for the perfect family photo shoot session,
+                then look no further! This session will capture all of the
+                laughs, smiles, and inside jokes amongst your family. This
+                package is perfect for any family, complete with one location
+                and outfit. This photo shoot will occur in the Omaha-Metro area. </p>
+            <h3 style="margin-top: 32px;">This package includes:</h3>
+            <ul style="margin-left: 32px!important;">
+                <li style="padding-left: 12px;">1 hour of shooting with 1 location & outfit</li>
+                <li style="padding-left: 12px;">Editing on 80+ photos</li>
+                <li style="padding-left: 12px;">Digital image transfer & download</li>
+                <li style="padding-left: 12px;">Printing & posting rights on all images</li>
+            </ul>
+            <hr style="margin-top: 42px; border-color: #fefefe; border-width: 1px;">
+            <a href="{% url 'calendar' %}">
+                <button class="btn button btn-primary" style="width: 212px; margin-top: 22px;">View Available
+                    Dates</button>
+            </a>
+        </div>
+    </main>
+    {% include 'footer.html' %}
+
+{% endblock %}

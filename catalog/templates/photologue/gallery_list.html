@@ -1,0 +1,27 @@
+{% include 'header.html' %}
+{% load i18n %}
+
+<title>Pixel Perfect Studios | Portfolio</title>
+
+{% block content %}
+
+    <div class="gallery-container" style="margin-top: 42px;">
+        <h1 class="gallery-title">{% trans "My Galleries" %}</h1>
+
+        <div class="gallery-grid">
+            {% if object_list %}
+                {% for gallery in object_list %}
+                    <div class="gallery-item">
+                        {% include "photologue/includes/gallery_sample.html" with gallery=gallery %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-gallery-message">{% trans "No galleries were found" %}.</div>
+            {% endif %}
+        </div>
+
+        {% include "photologue/includes/paginator.html" %}
+    </div>
+    {% include 'footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'bookings/base.html' %}
+
+<head>
+    <title>Pixel Perfect Studios | Add New Booking Session</title>
+</head>
+
+{% block content %}
+
+    <main class="main2">
+
+        {% if user.is_authenticated %}
+            <h1>Add a New<br/>Booking</h1>
+            <br/><br/>
+
+            {% if submitted %}
+                New Availability Added Successfully!
+
+            {% else %}
+
+                <form action="" method=POST style="margin: 14px 0 0 32px!important;">
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <input type="submit" value="Submit" class="btn btn-secondary">
+
+                </form>
+            {% endif %}
+
+            <br/><br/>
+
+        {% else %}
+            <h1>Sorry! You Must Be Logged In To View This Page...</h1>
+
+            <a href="{% url 'login' %}">Login Here</a>
+
+        {% endif %}
+
+    </main>
+
+
+{% endblock %}

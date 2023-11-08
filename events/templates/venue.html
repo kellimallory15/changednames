@@ -1,0 +1,68 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+
+    <h1>Packages</h1>
+    <br/>
+    <table class="table table-striped table-hover table-bordered">
+        {% for package in packages %}
+            <tr>
+                <td>
+                    <a href="{% url 'show-package' package.id %}">{{ package }}</a>
+                </td>
+                {% if user.is_authenticated %}
+                    <td align="right">
+                        <a href="{% url 'update-package' package.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
+
+                        <a href="{% url 'delete-package' package.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br/></br/>
+    <!--
+{{ packages }}<br/>
+Has Previous: {{ packages.has_previous }}<br/>
+Has Next: {{ packages.has_next }}<br/>
+Current Page: {{ packages.number }}<br/>
+Number of Pages: {{ packages.paginator.num_pages }}<br/>
+<hr><br/><br/>
+-->
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+
+            {% if packages.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+
+                <li class="page-item"><a class="page-link" href="?page={{ packages.previous_page_number }}">Previous</a>
+                </li>
+
+            {% endif %}
+
+            <!--
+<li class="page-item disabled"><a href="#" class="page-link">Page {{ packages.number }} of {{ packages.paginator.num_pages }}</a></li>
+-->
+
+            {% for i in nums %}
+                <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                </li>
+
+            {% endfor %}
+
+
+            {% if packages.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ packages.next_page_number }}">Next</a></li>
+
+                <li class="page-item"><a class="page-link" href="?page={{ packages.paginator.num_pages }}">Last &raquo</a>
+                </li>
+
+            {% endif %}
+
+        </ul>
+    </nav>
+    <br/>
+
+{% endblock %}

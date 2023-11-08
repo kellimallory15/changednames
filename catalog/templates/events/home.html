@@ -1,0 +1,87 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <h1>Welcome Back!</h1>
+        <h3>Bookings for <strong>{{ month }} {{ year }}</strong></h3>
+
+        <p style="font-size: 13px;">As of {{ time }}</p>
+        <br/><br/>
+        <div class="calendar" style="margin: -10px auto;">
+            <div class="header" style="background-color: #ffd234; color: #1c212d;">
+                <span class="prev">←</span>
+                <span class="month-year">October 2023</span>
+                <span class="next">→</span>
+            </div>
+            <div class="days">
+                <div class="day">Sun</div>
+                <div class="day">Mon</div>
+                <div class="day">Tue</div>
+                <div class="day">Wed</div>
+                <div class="day">Thu</div>
+                <div class="day">Fri</div>
+                <div class="day">Sat</div>
+            </div>
+            <div class="dates">
+                <!-- Dates will be filled here using Django -->
+                {% for date in dates %}
+                    <div class="date">{{ date }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <br/><br/>
+    </div>
+    <h3>Bookings This Month:</h3>
+
+    {% if booking_list %}
+        {% for booking in booking_list %}
+            <div class="card">
+                <div class="card-header">
+                    {{ booking }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Package: {{ booking.package }}</h5>
+                    <p class="card-text">
+                    <ul>
+                        <li>Date: {{ booking.booking_date }}</li>
+
+                        <li>Package Info: {{ booking.package.web }}</li>
+                        <li>Photographer: {{ booking.manager }}</li>
+                        <li>Description: {{ booking.description }}</li>
+                        <li>Addtl. Notes:<br/>
+                            {% for user in booking.attendees.all %}
+                                {{ user }}<br/>
+                            {% endfor %}
+                        </li>
+                    </ul>
+
+
+                    </p>
+                </div>
+                {% if user.is_authenticated %}
+                    {% if user == booking.manager %}
+                        <div class="card-footer text-muted">
+
+                            <a href="{% url 'update-booking' booking.id %}" class="btn btn-outline-secondary btn-sm">Update
+                                Booking</a>
+
+                            <a href="{% url 'delete-booking' booking.id %}" class="btn btn-outline-danger btn-sm">Delete
+                                Booking</a>
+
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <br/>
+        {% endfor %}
+
+    {% else %}
+        Sorry, no available bookings this month.
+    {% endif %}
+
+    <center>
+        <br/><br/><br/><br/>
+        Copyright (c) {{ current_year }} | Pixel Perfect Studios
+
+    </center>
+{% endblock %}

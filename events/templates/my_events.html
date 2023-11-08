@@ -1,0 +1,61 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+
+    <h2>My Bookings</h2>
+    <br/>
+
+    {% for booking in bookings %}
+
+        <div class="card">
+            <div class="card-header">
+                {{ booking }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Package: {{ booking.package }}</h5>
+                <p class="card-text">
+                <ul>
+                    <li>Date: {{ booking.booking_date }}</li>
+
+                    <li>Package Website: {{ booking.package.web }}</li>
+                    <li>Manager: {{ booking.manager }}</li>
+                    <li>Description: {{ booking.description }}</li>
+                    <li>Attendees:<br/>
+                        {% for user in booking.attendees.all %}
+                            {{ user }}<br/>
+                        {% endfor %}
+                    </li>
+                </ul>
+
+
+                </p>
+            </div>
+            {% if user.is_authenticated %}
+                {% if user == booking.manager %}
+                    <div class="card-footer text-muted">
+
+                        <a href="{% url 'update-booking' booking.id %}" class="btn btn-outline-secondary btn-sm">Update
+                            Booking</a>
+
+                        <a href="{% url 'delete-booking' booking.id %}" class="btn btn-outline-danger btn-sm">Delete
+                            Booking</a>
+
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+
+
+
+
+
+        <br/><br/>
+
+
+
+    {% endfor %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+    <head>
+        <title>Pixel Perfect Studios | Available Bookings</title>
+    </head>
+
+    <h1 class="title" style="font-weight: 500;">Available Bookings</h1>
+    <br/>
+
+
+
+    {% comment %}{% if booking.approved %}{% endcomment %}
+
+    {% for booking in booking_list %}
+        <div class="card">
+
+            <div class="card-header">
+                {{ booking }}
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">Package: {{ booking.package }}</h5>
+                <ul class="card-text">
+                    <li>Date: {{ booking.booking_date }}</li>
+                    <li>Days Till Booking: {{ booking.Days_till }}</li>
+                    <li>Occurred: {{ booking.Is_Past }}</li>
+                    <li>Package Website: {{ booking.package.web }}</li>
+                    <li>Photographer: {{ booking.manager }}</li>
+                    <li>Description: {{ booking.description }}</li>
+                    <li>Approved: {{ booking.approved }}</li>
+                    <li>Notes:<br/>
+                        {% for user in booking.attendees.all %}
+                            {{ user }}<br/>
+
+                        {% endfor %}
+                    </li>
+                </ul>
+            </div>
+            {% if user.is_authenticated %}
+                <div class="card-footer text-muted">
+
+                    <a href="{% url 'update-booking' booking.id %}" class="btn btn-outline-primary btn-sm">Update
+                        Booking</a>
+
+                    <a href="{% url 'delete-booking' booking.id %}" class="btn btn-outline-danger btn-sm">Delete
+                        Booking</a>
+
+                </div>
+            {% endif %}
+                {% comment %}{% endif %}{% endcomment %}
+        </div>
+
+        <br/><br/>
+
+    {% endfor %}
+
+    {% comment %}{% endif %}{% endcomment %}
+
+
+
+{% endblock %}

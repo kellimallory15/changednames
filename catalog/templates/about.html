@@ -1,0 +1,69 @@
+{% include 'header.html' %}
+{% load static %}
+{% block content %}
+
+    <title>Pixel Perfect Studios | About Me</title>
+
+    <body>
+
+    <div class="container"> <!-- Wrapping container for content -->
+
+        <!-- About Me Section -->
+        <div class="section about-section">
+            <div class="about-me">
+                <div class="portrait-container">
+                    <img src="{% static 'index/about-me.webp' %}" height="40%" alt="Presley Perfect" class="portrait">
+                </div>
+                <div class="text-content">
+                    <h2>About Me</h2>
+                    <p>Hello! My name is Presley Perfect, the face behind Pixel Perfect Studios! For seven years, I've
+                        been
+                        freezing moments in time through my lens. I'm driven by a passion to capture life's genuine
+                        beauty.
+                        Whether it's a heartfelt embrace or the biggest laugh you've ever seen, I aim to tell stories
+                        that
+                        resonate. Each click is a step in my ongoing journey of visual storytelling. Catch me in the
+                        Omaha-Metro for many of your photography needs!</p>
+                    <div style="margin-top: 24px;">
+                        <button class="btn btn-primary" onclick="window.location.href='{% url 'index' %}'">
+                            My Portfolio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What I Do Section -->
+        <div class="section about-section">
+            <div class="about-me">
+                <div class="text-content">
+                    <h2>What I Do</h2>
+                    <p>I'm here to capture your life's special moments, turning them into timeless keepsakes. From
+                        engagements
+                        to family gatherings and to personal portraits, I specialize in creating images that encapsulate
+                        the
+                        essence of each unique occasion. My approach is candid, allowing the true emotions and beauty of
+                        the
+                        moment to shine through. Whether you're celebrating a milestone or simply cherishing the
+                        everyday,
+                        I'm
+                        dedicated to crafting visual stories that you'll treasure for years to come.</p>
+                    <div style="margin-top: 24px;">
+                        <button class="btn btn-primary" onclick="window.location.href='{% url 'booking' %}'">
+                            Book a Session
+                        </button>
+                    </div>
+                </div>
+                <div class="portrait-container">
+                    <img src="{% static 'index/studio.webp' %}" height="10%" alt="Presley Perfect" class="portrait">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {% include 'footer.html' %}
+
+    </body>
+
+{% endblock %}

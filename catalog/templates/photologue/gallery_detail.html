@@ -1,0 +1,28 @@
+{% include 'header.html' %}
+{% load i18n %}
+
+<title>Pixel Perfect Studios | {{ gallery.title }}</title>
+
+{% block content %}
+
+    <div class="gallery-detail2">
+        <h1 class="gallery-title2">{{ gallery.title }}</h1>
+        <p class="gallery-date2 text-muted small">{% trans "Updated on" %} {{ gallery.date_added }}</p>
+        {% if gallery.description %}
+            <p class="gallery-description2">{{ gallery.description|safe }}</p>
+        {% endif %}
+        <div class="gallery-grid2">
+            {% for photo in gallery.public %}
+                <a href="{{ photo.get_absolute_url }}" class="gallery-item2">
+                    <img src="{{ photo.get_thumbnail_url }}" class="img-fluid" alt="{{ photo.title }}">
+                </a>
+            {% endfor %}
+        </div>
+        <div class="gallery-footer2">
+            <a href="{% url 'photologue:gallery-list' %}" class="btn button btn-primary"
+               style="padding-top: 10px!important;">{% trans "View all galleries" %}</a>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+
+{% endblock %}

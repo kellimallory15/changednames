@@ -1,0 +1,160 @@
+{% load static %}
+<header>
+    <div class="hamburger" id="hamburger" onclick="function toggleNav() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+            }
+
+            document.addBookingListener('click', function(booking) {
+                const nav = document.querySelector('nav');
+                const hamburger = document.getElementById('hamburger');
+
+                // Check if the click is outside both the navigation and the hamburger icon
+                if (!nav.contains(booking.target) && !hamburger.contains(booking.target)) {
+                    nav.classList.remove('active');
+                }
+        })
+        toggleNav()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <span id="logo"><a href="{% url 'index' %}"><img src="{% static 'index/logo_02.webp' %}" style="max-height: 76px;"
+                                                     alt="Pixel Perfect Studios Logo"></a></span>
+    <div class="cart_view">
+        <a href="{% url 'view_cart' %}">
+            <button class="round-button" style="--round-button-active-color: #ffd234; margin: 0 auto;"
+                    data-translate-value="400%" data-color="orange">
+                <svg fill="currentColor" viewBox="0 0 16 16" stroke="currentColor" stroke-width="2%">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+                </svg>
+            </button>
+        </a>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'home' '2023' 'October' %}">Availability</a></li>
+        <li class="nav-item dropdown" style="margin-left: -16px;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+                Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #1c212d;">
+                <li><a class="dropdown-item" href="{% url 'senior_about' %}">Senior Portrait</a></li>
+                <li><a class="dropdown-item" href="{% url 'couples_engagements_about' %}">Couples & Engagement</a></li>
+                <li><a class="dropdown-item" href="{% url 'family_about' %}">Family</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown" style="margin-left: -16px;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                Bookings
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #1c212d;">
+                <li><a class="dropdown-item" href="{% url 'list-bookings' %}">All Bookings</a></li>
+                {% if user.is_authenticated %}
+                    <li><a class="dropdown-item" href="{% url 'add-booking' %}">Add Availability</a></li>
+                    <li><a class="dropdown-item" href="{% url 'my_bookings' %}">My Availability</a></li>
+                {% endif %}
+                <li><a class="dropdown-item" href="{% url 'search_bookings' %}">Search</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<nav>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Pixel Perfect Studios Booking</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' '2023' 'October' %}">Calendar</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Bookings
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'list-bookings' %}">All Bookings</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'add-booking' %}">Add Availability</a></li>
+                            <li><a class="dropdown-item" href="{% url 'my_bookings' %}">My Availability</a></li>
+                        {% endif %}
+                        <li><a class="dropdown-item" href="{% url 'search_bookings' %}">Search Availability</a></li>
+
+
+                    </ul>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Packages
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'list-packages' %}">All Packages</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'add-package' %}">Add New Package</a></li>
+                        {% endif %}
+
+                    </ul>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Downloads
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'package_text' %}">Package Text File</a></li>
+                        <li><a class="dropdown-item" href="{% url 'package_csv' %}">Package CSV File</a></li>
+                        <li><a class="dropdown-item" href="{% url 'package_pdf' %}">Package PDF File</a></li>
+                    </ul>
+                </li>
+
+
+
+
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin_approval' %}">Admin</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+            <form class="d-flex" method=POST action="{% url 'search-packages' %}">
+                {% csrf_token %}
+
+                <input class="form-control me-2" type="search" placeholder="Search Packages" aria-label="Search"
+                       name="searched">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>

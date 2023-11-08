@@ -1,0 +1,34 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user == booking.manager %}
+
+            <h1>Update Booking...</h1>
+            <br/>
+            <form action="" method=POST>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br/>
+            <input type="submit" value="Update" class="btn btn-secondary">
+
+        {% else %}
+            <h2>Access Denied</h2>
+            <p>Only the booking's Manager can update this booking...</p>
+
+            Logged In User:  {{ user }}
+            <br/>
+            Booking Manager: {{ booking.manager }}
+            <br/>
+        {% endif %}
+
+
+    {% else %}
+        <h1>Sorry! You Must Be Logged In To View This Page...</h1>
+
+        <a href="{% url 'login' %}">Login Here</a>
+    {% endif %}
+
+
+
+{% endblock %}

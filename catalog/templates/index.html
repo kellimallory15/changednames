@@ -1,0 +1,74 @@
+{% include 'header.html' %}
+{% load static %}
+{% block content %}
+
+    <body>
+
+    {% if messages %}
+        <div class="container" style="margin-top: 32px;">
+            {% for message in messages %}
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <section class="title">
+        <h1>Welcome to Pixel Perfect Studios!</h1>
+        <h3>Hello, World! My name is Presley! View my most popular packages, below!</h3>
+        <p>Or click <a href="{% url 'about' %}" class="inlineviewlink">here</a> to learn more about me :)</p>
+    </section>
+
+    <main>
+
+        <section class="photo-package">
+
+            <img src="{% static 'index/senior_02.webp' %}" alt="Photo Package 01">
+            <h2>01. Senior Package</h2>
+            <p class="package_bio">Capture the pivotal moment in a young adult's life with our Senior Package. Ideal for
+                high school or
+                college seniors, this package ensures that your milestone is remembered forever with classic and
+                contemporary shots that reflect your individual journey.</p>
+            <span><a href="{% url 'calendar' %}"><button
+                    class="btn button btn-primary"><span>Book Now</span></button></a>&emsp;
+                        <a href="{% url 'family_about' %}"><button
+                                class="btn button btn-outline-secondary">Learn More</button></a></span>
+        </section>
+
+        <section class="photo-package">
+            <img src="{% static 'index/family_02.webp' %}" alt="Photo Package 02">
+            <h2>02. Family Package</h2>
+            <p class="package_bio">Time flies, but memories last forever. Our Family Package is tailored to preserve the
+                bond you share with
+                your loved ones. Whether it's a quiet moment with your child or a lively family reunion, we ensure every
+                emotion is beautifully encapsulated.</p>
+            <span><a href="{% url 'calendar' %}"><button
+                    class="btn button btn-primary"><span>Book Now</span></button></a>&emsp;
+                        <a href="{% url 'family_about' %}"><button
+                                class="btn button btn-outline-secondary">Learn More</button></a></span>
+        </section>
+
+        <section class="photo-package">
+            <img src="{% static 'index/couple_02.webp' %}" alt="Photo Package 03">
+            <h2 style="line-height: normal!important;">03. Couples & Engagements</h2>
+            <p class="package_bio">Celebrate love and commitment with our Couples & Engagements Package. Whether you're
+                newly in love or
+                commemorating years of togetherness, this package captures the essence of your relationship, making
+                every glance and smile an everlasting memory.</p>
+            <span><a href="{% url 'calendar' %}"><button
+                    class="btn button btn-primary"><span>Book Now</span></button></a>&emsp;
+                        <a href="{% url 'family_about' %}"><button
+                                class="btn button btn-outline-secondary">Learn More</button></a></span>
+        </section>
+
+
+    </main>
+    </body>
+
+
+    {% include 'footer.html' %}
+{% endblock %}

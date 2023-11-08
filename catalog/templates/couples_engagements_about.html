@@ -1,0 +1,53 @@
+{% include 'header.html' %}
+{% load static %}
+{% block content %}
+
+    <head>
+        <title>Pixel Perfect Studios | Senior Photo Package</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+              rel="stylesheet">
+        <link rel="icon" type="image/png" sizes="192x192" href="{% static 'android-chrome-192x192.png' %}">
+        <link rel="icon" type="image/png" sizes="512x512" href="{% static 'android-chrome-512x512.png' %}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'site.webmanifest' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+        <script src="{% static 'script.js' %}" type="text/javascript"></script>
+    </head>
+
+    <main style="margin-top: 56px;">
+        <img src="{% static 'index/couple_02.webp' %}" width="50%" height="50%" alt="Couples & Engagements Package" class="portrait">
+        <div style="display: table-row; margin-left: 62px;">
+            <h2>$375</h2>
+            <h2 style="margin-bottom: 22px;">Couples Session Package</h2>
+            <p>I <em>love</em> love. And I'd love to capture your love that you have
+                for that special person. Let me be your third wheel and
+                we'll capture all the laughs, smiles, and smooches you
+                could ever want!</p>
+            <br/>
+            <p>This package is perfect for any couple, complete with two
+                locations and outfits. This photoshoot will occur in the
+                Omaha-Metro area. </p>
+            <h3 style="margin-top: 32px;">This package includes:</h3>
+            <ul style="margin-left: 32px!important;">
+                <li style="padding-left: 12px;">1.5 hours of shooting with 2 locations & outfits</li>
+                <li style="padding-left: 12px;">Editing on 100+ photos</li>
+                <li style="padding-left: 12px;">Digital image transfer & download</li>
+                <li style="padding-left: 12px;">Printing & posting rights on all images</li>
+            </ul>
+            <hr style="margin-top: 42px; border-color: #fefefe; border-width: 1px;">
+            <a href="{% url 'calendar' %}">
+                <button class="btn button btn-primary" style="width: 212px; margin-top: 22px;">View Available
+                    Dates
+                </button>
+            </a>
+        </div>
+    </main>
+    {% include 'footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+<title>Online Booking</title>
+{% extends 'booking/layout.html' %}
+{% load static %}
+{% block body %}
+
+    {% if user.is_authenticated %}
+        <h1 class="text-center  mt-3">Online Booking</h1>
+
+        <div class="shadow p-4 mb-5 bg-body bg-body rounded text-black  m-5 ">
+            <form method="post" action="{% url 'booking' %}" class="me-2 ms-2" required>
+                {% csrf_token %}
+
+                <!--input service-->
+                <div>
+                    <h3 class="">Select Package:</h3>
+                    <label>
+                        <select class="form-select fs-3" name="service">
+                            <option value="Senior Portrait Package">Senior Portrait Package</option>
+                            <option value="Couples & Engagements Package">Couples & Engagements Package</option>
+                            <option value="Family Package">Family Package</option>
+                        </select>
+                    </label>
+                </div>
+                <!--input day-->
+                <div class="mt-3">
+                    <h3 class="">Select Day:</h3>
+                    <label>
+                        <select class="form-select fs-3" name="day">
+                            {% for validateWeekday in validateWeekdays %}
+                                <option value="{{ validateWeekday }}">{{ validateWeekday }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+
+                <br/>
+                <button type="submit" class="btn btn-primary text-white">Continue</button>
+            </form>
+        </div>
+
+
+    {% else %}
+        <body class="body-img" style="background-image: url({% static 'index/bg_lg.webp' %});">
+
+            <main>
+                <div class="p-4 mb-5 rounded text-black m-5" style="margin: 224px 0 0 56px;">
+                    <h1 class="p-2 me-3" style="margin-bottom: 24px;">You Are Not Signed in!</h1>
+                    <button class="btn btn-primary" onclick="window.location.href='{% url 'register_user' %}'">
+                        Sign In
+                    </button>
+                </div>
+            </main>
+        </body>
+
+    {% endif %}
+
+
+{% endblock %}
